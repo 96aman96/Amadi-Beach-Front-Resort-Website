@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://github.com/yevavin/coming-soon-page](https://github.com/yevavin/coming-soon-page)
+- Live Site URL: [https://yevavin.github.io/coming-soon-page/](https://yevavin.github.io/coming-soon-page/)
 
 ## My process
 
