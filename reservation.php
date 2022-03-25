@@ -2,50 +2,76 @@
 
 
 
-if(!$_POST) exit;
+if (!$_POST)
+	exit;
 
 
 
-function tommus_email_validate($email) { return filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $email); }
+function tommus_email_validate($email)
+{
+	return filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/@.+\./', $email);
+}
 
 
-$name = $_POST['name']; $email = $_POST['email']; $comments = $_POST['comments']; $phone = $_POST['phone']; $room = $_POST['room']; $start = $_POST['start']; $end = $_POST['end']; $adults = $_POST['adults']; $children = $_POST['children'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$comments = $_POST['comments'];
+$phone = $_POST['phone'];
+$room = $_POST['room'];
+$start = $_POST['start'];
+$end = $_POST['end'];
+$adults = $_POST['adults'];
+$children = $_POST['children'];
 
 
 
-if(trim($name) == '') {
+if (trim($name) == '') {
 
 	exit('<div class="error_message">Please enter your name.</div>');
 
-} else if(trim($email) == '') {
+}
+else if (trim($email) == '') {
 
 	exit('<div class="error_message">Please enter a valid email address.</div>');
 
-} else if(!tommus_email_validate($email)) {
+}
+else if (!tommus_email_validate($email)) {
 
 	exit('<div class="error_message">You have entered an invalid e-mail address.</div>');
-	
-} else if(trim($phone) == '') {
+
+
+}
+else if (trim($phone) == '') {
 
 	exit('<div class="error_message">Please enter your phone number.</div>');
 
-} else if(trim($start) == '') {
+}
+else if (trim($start) == '') {
 
 	exit('<div class="error_message">Please choose a date.</div>');
-	
-} else if(trim($end) == '') {
+
+
+}
+else if (trim($end) == '') {
 
 	exit('<div class="error_message">Please choose a date.</div>');
-	
-} else if( strpos($email, 'href') !== false ) {
+
+
+}
+else if (strpos($email, 'href') !== false) {
 
 	exit('<div class="error_message">You have entered an invalid e-mail address.</div>');
-	
-} else if( strpos($email, '[url') !== false ) {
+
+
+}
+else if (strpos($email, '[url') !== false) {
 
 	exit('<div class="error_message">You have entered an invalid e-mail address.</div>');
 
-} if(get_magic_quotes_gpc()) { $email = stripslashes($email); }
+}
+if (get_magic_quotes_gpc()) {
+	$email = stripslashes($email);
+}
 
 
 
@@ -63,7 +89,7 @@ $e_reply = "You can contact $name via email: $email or by phone: $phone";
 
 
 
-$msg = wordwrap( $e_body . $e_content . $e_reply, 70 );
+$msg = wordwrap($e_body . $e_content . $e_reply, 70);
 
 
 
@@ -79,4 +105,6 @@ $headers .= "Content-Transfer-Encoding: quoted-printable" . "\r\n";
 
 
 
-if(mail($address, $e_subject, $msg, $headers)) { echo "<fieldset><div id='success_page'><h5>Request Sent!</h5><p>You will receive a confirmation by email shortly.</p></div></fieldset>"; }
+if (mail($address, $e_subject, $msg, $headers)) {
+	echo "<fieldset><div id='success_page'><h5>Request Sent!</h5><p>You will receive a confirmation by email shortly.</p></div></fieldset>";
+}
